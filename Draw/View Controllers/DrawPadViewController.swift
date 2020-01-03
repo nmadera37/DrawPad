@@ -13,7 +13,7 @@ class DrawPadViewController: UIViewController {
     // MARK: UI Elements
     private var backgroundImageView: UIImageView!
     private var colorCollectionView: UICollectionView!
-    private var canvas: Canvas!
+    private var canvas: CanvasProtocol!
     
     // MARK: Properties
     private var viewModel: DrawPadViewModelProtocol
@@ -79,7 +79,7 @@ extension DrawPadViewController {
     }
     
     @objc func tappedClear() {
-        if canvas.hasStarted || backgroundImageView.image != nil {
+        if canvas.hasStartedDrawing || backgroundImageView.image != nil {
             showDeleteAlert()
         }
     }

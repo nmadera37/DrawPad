@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol CanvasProtocol: UIView {
+    var hasStartedDrawing: Bool { get }
+    func setStrokeColor(_ color: UIColor)
+    func setDrawTool(_ tool: DrawTool)
+    func undo()
+    func clear()
+}
+
 class Canvas: UIView {
     
     // MARK: Properties
@@ -19,7 +27,7 @@ class Canvas: UIView {
         return drawTool == .eraser
     }
     
-    var hasStarted: Bool {
+    var hasStartedDrawing: Bool {
         return !lines.isEmpty
     }
     
@@ -65,8 +73,8 @@ class Canvas: UIView {
     }
 }
 
-// MARK: - Public Functions
-extension Canvas {
+// MARK: - Protocol Functions
+extension Canvas: CanvasProtocol {
     func setStrokeColor(_ color: UIColor) {
         strokeColor = color.cgColor
     }
